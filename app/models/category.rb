@@ -4,6 +4,9 @@ class Category < ApplicationRecord
 
   before_save :generate_slug
 
+  has_many :subcategories, class_name: "Category", foreign_key: "parent_id"
+  belongs_to :parent, class_name: "Category", optional: true
+
   private
 
   def generate_slug
